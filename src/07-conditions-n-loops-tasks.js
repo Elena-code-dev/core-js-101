@@ -64,8 +64,9 @@ function getFactorial(n) {
  *   5,10  =>  45 ( = 5+6+7+8+9+10 )
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
-function getSumBetweenNumbers(/* n1, n2 */) {
-  throw new Error('Not implemented');
+function getSumBetweenNumbers(n1, n2) {
+  // eslint-disable-next-line no-mixed-operators
+  return ((n2 - n1) + 1) * (n1 + n2) / 2;
 }
 
 
@@ -84,8 +85,10 @@ function getSumBetweenNumbers(/* n1, n2 */) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  if (a <= 0 || b <= 0 || c <= 0) return false;
+  if (a + b > c && a + c > b && c + b > a) return true;
+  return false;
 }
 
 
@@ -121,8 +124,9 @@ function isTriangle(/* a, b, c */) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  return rect1.top + rect1.height > rect2.top + rect2.height
+  && rect1.left + rect1.width > rect2.left + rect2.width;
 }
 
 
