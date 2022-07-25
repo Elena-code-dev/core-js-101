@@ -591,13 +591,6 @@ function selectMany(arr, childrenSelector) {
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
 function getElementByIndexes(/* arr, indexes */) {
-  /* let a;
-  for (let i = 0; i < arr.length; i++) {
-    for (let j = 0; j < arr[i].length; j++) {
-      a = arr[indexes[0]][indexes[1]];
-    }
-  }
-  return a; */
   throw new Error('Not implemented');
 }
 
