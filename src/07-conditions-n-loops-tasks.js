@@ -1,5 +1,4 @@
-/* eslint-disable no-use-before-define */
-/* eslint-disable no-plusplus */
+
 /* *************************************************************************************************
  *                                                                                                *
  * Please read the following tutorial before implementing tasks:                                   *
@@ -207,8 +206,20 @@ function findFirstSingleChar(str) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  const str = [a, b].sort().join(', ').split('');
+  if (isStartIncluded) {
+    str.unshift('[');
+  } else {
+    str.unshift('(');
+  }
+  if (isEndIncluded) {
+    str.push(']');
+  } else {
+    str.push(')');
+  }
+
+  return str.join('');
 }
 
 
@@ -343,8 +354,10 @@ function isBracketsBalanced(str) {
     '>': '<',
   };
   const arr = [];
-  // eslint-disable-next-line no-plusplus
-  for (let i = 0; i < str.length; i++) {
+
+  // eslint-disable-next-line padded-blocks
+  for (let i = 0; i < str.length; i += 1) {
+
     // eslint-disable-next-line no-use-before-define
     if (isClosed(str[i])) {
       if (brackets[str[i]] !== arr.pop()) return false;
@@ -399,8 +412,8 @@ function toNaryString(num, n) {
 function getCommonDirectoryPath(pathes) {
   const res = [];
   const sort = pathes.sort();
-  for (let i = 0; i < sort.length; i++) {
-    for (let j = 0; j < sort[i].length; j++) {
+  for (let i = 0; i < sort.length; i += 1) {
+    for (let j = 0; j < sort[i].length; j += 1) {
       if (sort[i][j] === sort[sort.length - 1][j]) {
         res.push(sort[i][j]);
       } else {
@@ -433,6 +446,7 @@ function getCommonDirectoryPath(pathes) {
  *
  */
 function getMatrixProduct(m1, m2) {
+  // eslint-disable-next-line no-use-before-define
   return m1.map((x) => transpose(m2).map((y) => dotproduct(x, y)));
 
   function transpose(a) {

@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 /* *********************************************************************************************
  *                                                                                             *
  * Please read the following tutorial before implementing tasks:                                *
@@ -84,8 +85,16 @@ function getPolynom() {
  *   ...
  *   memoizer() => the same random number  (next run, returns the previous cached result)
  */
-function memoize(/* func */) {
-  throw new Error('Not implemented');
+function memoize(func) {
+  const mem = new Map();
+  return function (arg) {
+    if (mem.has(arg)) {
+      return mem.get(arg);
+    }
+    const res = func(arg);
+    mem.set(arg, res);
+    return res;
+  };
 }
 
 

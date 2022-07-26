@@ -185,8 +185,7 @@ function getParallelepipedDiagonal(a, b, c) {
  *   1678, 3  => 2000
  */
 function roundToPowerOfTen(num, pow) {
-  // eslint-disable-next-line no-restricted-properties
-  return Math.round(num / Math.pow(10, pow)) * Math.pow(10, pow);
+  return Math.round(num / 10 ** pow) * 10 ** pow;
 }
 
 /**
@@ -207,8 +206,7 @@ function roundToPowerOfTen(num, pow) {
  *   17 => true
  */
 function isPrime(n) {
-  // eslint-disable-next-line no-plusplus
-  for (let i = 2, s = Math.sqrt(n); i <= s; i++) {
+  for (let i = 2, s = Math.sqrt(n); i <= s; i += 1) {
     if (n % i === 0) return false;
   }
   return n > 1;

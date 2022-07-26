@@ -94,6 +94,14 @@ function getFastestPromise(/* array */) {
  */
 function chainPromises(/* array, action */) {
   throw new Error('Not implemented');
+  /*
+  async function get(arr) {
+    const arr2 = [];
+    await arr.forEach((promice) => promice.then((r) => arr2.push(r)));
+    return arr2.reduce(action);
+  }
+  return get(array);
+  */
 }
 
 module.exports = {
