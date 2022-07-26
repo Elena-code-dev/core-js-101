@@ -1,3 +1,4 @@
+/* eslint-disable no-use-before-define */
 /* eslint-disable no-plusplus */
 /* *************************************************************************************************
  *                                                                                                *
@@ -431,8 +432,16 @@ function getCommonDirectoryPath(pathes) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  return m1.map((x) => transpose(m2).map((y) => dotproduct(x, y)));
+
+  function transpose(a) {
+    return a[0].map((x, i) => a.map((y) => y[i]));
+  }
+
+  function dotproduct(a, b) {
+    return a.map((x, i) => a[i] * b[i]).reduce((m, n) => m + n);
+  }
 }
 
 
