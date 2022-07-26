@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 /* *************************************************************************************************
  *                                                                                                *
  * Please read the following tutorial before implementing tasks:                                   *
@@ -333,8 +334,27 @@ function getDigitalRoot(num) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+function isBracketsBalanced(str) {
+  const brackets = {
+    ')': '(',
+    ']': '[',
+    '}': '{',
+    '>': '<',
+  };
+  const arr = [];
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < str.length; i++) {
+    // eslint-disable-next-line no-use-before-define
+    if (isClosed(str[i])) {
+      if (brackets[str[i]] !== arr.pop()) return false;
+    } else {
+      arr.push(str[i]);
+    }
+  }
+  return arr.length === 0;
+  function isClosed(s) {
+    return [')', ']', '}', '>'].indexOf(s) > -1;
+  }
 }
 
 
@@ -358,8 +378,8 @@ function isBracketsBalanced(/* str */) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
-  throw new Error('Not implemented');
+function toNaryString(num, n) {
+  return num.toString(n);
 }
 
 
@@ -375,8 +395,21 @@ function toNaryString(/* num, n */) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/verbalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  throw new Error('Not implemented');
+function getCommonDirectoryPath(pathes) {
+  const res = [];
+  const sort = pathes.sort();
+  for (let i = 0; i < sort.length; i++) {
+    for (let j = 0; j < sort[i].length; j++) {
+      if (sort[i][j] === sort[sort.length - 1][j]) {
+        res.push(sort[i][j]);
+      } else {
+        break;
+      }
+    }
+    break;
+  }
+  const reg = res.join('').replace(/[a-z]*$/ig, ' ');
+  return reg.trim();
 }
 
 
