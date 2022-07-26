@@ -124,9 +124,8 @@ function isTriangle(a, b, c) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(rect1, rect2) {
-  return rect1.top + rect1.height > rect2.top + rect2.height
-  && rect1.left + rect1.width > rect2.left + rect2.width;
+function doRectanglesOverlap(/* rect1, rect2 */) {
+  throw new Error('Not implemented');
 }
 
 
@@ -240,8 +239,10 @@ function reverseString(/* str */) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  const arr = String(num).split('');
+  arr.reverse();
+  return +arr.join('');
 }
 
 
@@ -265,8 +266,29 @@ function reverseInteger(/* num */) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  // eslint-disable-next-line no-param-reassign
+  ccn = String(ccn);
+  if (/[^0-9-\s]+/.test(ccn)) return false;
+
+  let checkSum = 0;
+  let bEven = false;
+  // eslint-disable-next-line no-param-reassign
+  ccn = ccn.replace(/\D/g, '');
+
+  // eslint-disable-next-line no-plusplus
+  for (let i = ccn.length - 1; i >= 0; i--) {
+    const cDigit = ccn.charAt(i);
+    let nDigit = parseInt(cDigit, 10);
+
+    // eslint-disable-next-line no-cond-assign
+    if (bEven && (nDigit *= 2) > 9) nDigit -= 9;
+
+    checkSum += nDigit;
+    bEven = !bEven;
+  }
+
+  return (checkSum % 10) === 0;
 }
 
 /**
@@ -283,8 +305,10 @@ function isCreditCardNumber(/* ccn */) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  // eslint-disable-next-line no-return-assign, no-param-reassign
+  const sum = String(num).split('').map(Number).reduce((acc, item) => acc += item, 0);
+  return sum > 9 ? getDigitalRoot(sum) : sum;
 }
 
 
